@@ -1,0 +1,11 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Christophe\\": "src/"
+        }
+    },
+    "require": {
+        "illuminate/database": "^5.8",
+        "fzaninotto/faker": "^1.8"
+    }
+}
