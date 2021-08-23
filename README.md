@@ -2,7 +2,7 @@
 <!-- Don't modify this file manually (you'll loose your changes) -->
 <!-- but run the tool once more -->
 
-<!-- Last refresh date: 2021-08-23 21:51:05 -->
+<!-- Last refresh date: 2021-08-23 22:00:52 -->
 
 <!-- below, content of ./Z:/home/christophe/repositories/test_eloquent_ORM/index.md -->
 
@@ -398,6 +398,41 @@ foreach ($user->roles as $role) {
 ### Has many Through
 
 > [https://laravel.com/docs/7.x/eloquent-relationships#has-many-through](https://laravel.com/docs/7.x/eloquent-relationships#has-many-through)
+
+
+### Eager Loading
+
+> [https://laravel.com/docs/7.x/eloquent-relationships#eager-loading](https://laravel.com/docs/7.x/eloquent-relationships#eager-loading)
+
+**Eager loading alleviates the N + 1 query problem.**
+
+File `~/App/Book.php`: when access to f.i. a book, directly get the author. Using the `$with` public property allow to define which relations should be loaded in the same time. This will drastically reduce the number of queries to the database.
+
+```php
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Book extends Model
+{
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['author'];
+
+    /**
+     * Get the author that wrote the book.
+     */
+    public function author()
+    {
+        return $this->belongsTo('App\Author');
+    }
+}
+```
 
 ## Author
 

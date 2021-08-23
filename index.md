@@ -147,6 +147,19 @@ After accessing this relationship, we may access the intermediate table using th
 
 > [https://laravel.com/docs/7.x/eloquent-relationships#has-many-through](https://laravel.com/docs/7.x/eloquent-relationships#has-many-through)
 
+
+### Eager Loading 
+
+> [https://laravel.com/docs/7.x/eloquent-relationships#eager-loading](https://laravel.com/docs/7.x/eloquent-relationships#eager-loading)
+
+**Eager loading alleviates the N + 1 query problem.**
+
+File `~/App/Book.php`: when access to f.i. a book, directly get the author. Using the `$with` public property allow to define which relations should be loaded in the same time. This will drastically reduce the number of queries to the database.
+
+```php
+<!-- concat-md::include "./files/eagerLoading/byDefault.php" -->
+```
+
 ## Author
 
 Christophe Avonture
