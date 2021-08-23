@@ -1,58 +1,9 @@
-![Banner](.images/banner.png)
-
-# Test Eloquent ORM 
-
-> Test Eloquent outside Laravel and with a sqlite `in_memory` database
-
-## Installation
-
-* Get a copy of this repository
-* Run `composer install` on command prompt
-
-If you need to add a new class or change names, don't forget to
-refresh composer autoload: run `composer dump-autoload` in the DOS
-prompt.
-
-## How this code was built; the story
-
-Just create a new empty folder and go in it.
-
-### Composer.json
-
-Then run `composer require illuminate/database`; answer `no` to create
-a new `composer.json` file (and not reusing an existing one).
-
-Also run `composer require fzaninotto/faker` to install the `Faker`
-library. So we'll be able to add dummy data like random name, random
-firstname, random birthdate, ...
-
-Finally open `composer.json` and add an autoloader for our classes:
-
-```json
-{
-    "autoload": {
-        "psr-4": {
-            "Christophe\\": "src/"
-        }
-    },
-    "require": {
-        "illuminate/database": "^5.8",
-        "fzaninotto/faker": "^1.8"
-    }
-}
-```
-
-### Define our Database class
-
-Create a `src` folder and create the `src/Database.php` file.
-
-```php
 <?php
 
 namespace Christophe;
 
 use \Illuminate\Database\Capsule\Manager as DB;
-use Christophe\Customer as Customer;
+use Christophe\Customer;
 use Faker\Factory as Faker;
 
 class Database
@@ -147,58 +98,3 @@ class Database
         }
     }
 }
-```
-
-### Define our customer class
-
-Create an `src/Customer.php` file in the `src` folder (create it) with:
-
-```php
-<?php
-
-namespace Christophe;
-
-use Illuminate\Database\Eloquent\Model as Model;
-
-class Customer extends Model
-{
-    protected $table = 'customers';
-
-    protected $id        = 0;
-    protected $name      = '';
-    protected $firstname = '';
-    protected $birthdate = null;
-
-    protected $fillable = ['name', 'firstname', 'birthdate'];
-}
-```
-
-### And create our index file to test the solution
-
-And finally create an `index.php` file with
-
-```php
-<?php
-
-require_once 'vendor/autoload.php';
-
-use Christophe\Database;
-
-$testDB = new Database();
-$testDB->test();
-```
-
-## Run the test
-
-Under DOS: `php index.php`
-
-If everything goes fine, you'll get the list of records from the 
-database. 
-
-Remember, that database doesn't exists on disk, just in memory so, 
-when the script has finished to run, the database has been already
-cleared from memory.
-
-## Author
-
-Christophe Avonture

@@ -1,0 +1,13 @@
+users
+    id - integer
+    name - string
+
+roles
+    id - integer
+    name - string
+
+role_user
+    user_id - integer
+    role_id - integer
+    created_at - timestamp
+    updated_at - timestamp
